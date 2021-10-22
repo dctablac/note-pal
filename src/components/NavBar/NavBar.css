@@ -1,0 +1,44 @@
+#nav-bar {
+    background-color: hsl(51, 100%, 50%);
+    height: 10%;
+    padding: 0 2rem;
+    position: relative;
+    width: 100%;
+}
+
+.nav-links {
+    display: flex;
+    height: 100%;
+    position: relative;
+    width: fit-content;
+}
+
+.nav-link {
+    align-items: center;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    font-size: 1.5rem;
+    height: 100%;
+    margin: 0 0.5rem;
+    position: relative;
+    text-decoration: none;
+}
+
+.nav-link-active::before {
+    animation: extend 0.2s;
+    background-color: white;
+    content: '';
+    height: 5%;
+    position: absolute;
+    top: 90%;
+    width: 100%;
+}
+@keyframes extend {
+    from {
+        transform: scaleX(0);
+    }
+    to {
+        transform: scaleX(1);
+    }
+}
