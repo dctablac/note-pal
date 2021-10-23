@@ -1,0 +1,11 @@
+.notes-item {
+    border: 1px solid blue;
+}
+.notes-item-detail {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+.notes-item-content {
+    color: rgba(0,0,0,60%);
+}

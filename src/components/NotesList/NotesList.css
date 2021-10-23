@@ -1,0 +1,5 @@
+#notes-list {
+    border: 1px solid red;
+    overflow-y: scroll;
+    width: 30%;
+}

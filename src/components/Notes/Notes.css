@@ -1,0 +1,13 @@
+#notes-page {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+#note-book {
+    border: 1px solid black;
+    display: flex;
+    height: 98%;
+    width: 98%;
+}
