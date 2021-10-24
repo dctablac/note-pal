@@ -1,0 +1,22 @@
+.notes-item {
+    padding: 1rem;
+}
+.notes-item-content {
+    margin-left: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.notes-item-detail {
+    align-items: center;
+    display: flex;
+}
+.notes-item-content {
+    color: rgba(0,0,0,60%);
+}
+.notes-item-title, .notes-item-detail {
+    pointer-events: none;
+}
+.active {
+    background-color: gold;
+}
