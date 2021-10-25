@@ -1,0 +1,35 @@
+/* Signup and Login shared styling */
+.account-form-page {
+    height: 100%;
+}
+.account-form {
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    justify-content: space-between;
+    max-width: 500px;
+    min-width: 400px;
+    width: 40%;
+}
+
+.account-form-title, .account-form-footer {
+    text-align: center;
+}
+
+.account-form-input, .account-form-btn, .account-form-btn-disabled {
+    border-radius: 10px;
+    padding: 1rem;
+}
+.account-form-input {
+    border-color: rgba(0,0,0,0.2);
+}
+
+.account-form-btn,.account-form-btn-disabled {
+    border: none;
+}
+.account-form-btn {
+    background-color: gold;
+}
+.account-form-btn-disabled {
+    background-color: rgba(255, 215, 0, 0.5);
+}

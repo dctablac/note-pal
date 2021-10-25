@@ -10,3 +10,9 @@
 html, body, #root {
     height: 100%;
 }
+
+.flex-container-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}

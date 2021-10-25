@@ -1,4 +1,14 @@
 #notes-list {
+    padding-right: 0.5rem;
     overflow-y: scroll;
     width: 30%;
+}
+.create-note-item {
+    border: 1px dashed rgba(0,0,0,0.5);
+    cursor: pointer;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+.create-note-item:hover {
+    background-color: rgba(0,0,0,0.05);
 }

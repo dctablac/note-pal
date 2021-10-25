@@ -41,8 +41,8 @@ export default function NotesDisplay(props) {
                 noteToDisplay && 
                 <Fragment>
                     <h3 className="note-display-date">{formatDate(lastEditDate)}{lastEditTime}</h3>
-                    <h2 className="note-display-title" contentEditable="true">{title}</h2>
-                    <div className="note-display-content" contentEditable="true">
+                    <h2 className="note-display-title">{title}</h2>
+                    <div className="note-display-content">
                         {parse(htmlContent)}
                     </div>
                 </Fragment>

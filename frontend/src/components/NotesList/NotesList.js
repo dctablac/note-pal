@@ -4,7 +4,7 @@ import './NotesList.css';
 import NotesListItem from '../NotesListItem';
 
 export default function NotesList(props) {
-    const { data, showActive, activeNote, userID } = props;
+    const { data, showActive, activeNote, userID, handleClick } = props;
 
     function renderNoteList() {
         return (
@@ -15,7 +15,6 @@ export default function NotesList(props) {
                 } else {
                     return <NotesListItem data={note} onClick={showActive} data-id={key} key={key} className={"notes-item"}/>
                 }
-                
             })
         )
     }
@@ -24,8 +23,12 @@ export default function NotesList(props) {
         <div id="notes-list">
             {
                 // TODO: Will need to pass in userID in browser
+                data &&
                 renderNoteList(userID)
             }
+            <div className="create-note-item" onClick={handleClick}>
+                <p>+ New Note</p>
+            </div>
         </div>
     )
 }

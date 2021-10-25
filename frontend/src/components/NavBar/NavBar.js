@@ -11,6 +11,7 @@ export default function NavBar() {
                 <NavLink className="nav-link" exact to="/notes" activeClassName="nav-link-active">My Notes</NavLink>
                 <NavLink className="nav-link" to="/signup" activeClassName="nav-link-active">Sign Up</NavLink>
                 <NavLink className="nav-link" to="/login" activeClassName="nav-link-active">Login</NavLink>
+                <NavLink className="nav-link" to="/account" activeClassName="nav-link-active">Account</NavLink>
                 <NavLink className="nav-link" to="/logout">Logout</NavLink>
             </div>
         </nav>
