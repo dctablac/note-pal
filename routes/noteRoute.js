@@ -41,7 +41,6 @@ router.route('/update/:noteID').patch(async (req, res) => {
     } else {
         res.status(200).send({ msg: "Note was updated successfully"});
     }
-    res.send(response);
 });
 
 // Delete a note
