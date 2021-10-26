@@ -13,7 +13,11 @@
     width: fit-content;
 }
 
-.nav-link {
+.logout-btn {
+    background: none;
+    border: none;
+}
+.nav-link, .logout-btn {
     align-items: center;
     color: white;
     cursor: pointer;
@@ -24,15 +28,6 @@
     position: relative;
     text-decoration: none;
 }
-/* .nav-link:hover::before{
-    animation: extend 0.2s;
-    background-color: white;
-    content: '';
-    height: 5%;
-    position: absolute;
-    top: 90%;
-    width: 100%;
-} */
 .nav-link-active::before {
     animation: extend 0.2s;
     background-color: white;

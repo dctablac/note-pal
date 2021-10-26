@@ -16,7 +16,17 @@
     text-align: center;
 }
 
-.account-form-input, .account-form-btn, .account-form-btn-disabled {
+.account-form-error-msg {
+    background-color: rgba(255,0,0,0.1);
+    color: red;
+    animation: fadeIn 0.5s;
+}
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.account-form-input, .account-form-btn, .account-form-btn-disabled, .account-form-error-msg {
     border-radius: 10px;
     padding: 1rem;
 }
