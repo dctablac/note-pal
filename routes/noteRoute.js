@@ -21,7 +21,7 @@ router.route('/create').post(async (req, res) => {
 router.route('/read/:email').get(async (req, res) => {
     const response = await Note.find({email: req.params.email});
     if (response.length === 0) {
-        res.status(200).send({ msg: "No notes found", notes: response });
+        res.status(404).send({ msg: "No notes found", notes: response });
     } else {
         res.status(200).send({ msg: "Notes successfully retrieved.", notes: response });
     }
@@ -50,7 +50,7 @@ router.route('/delete/:noteID').delete(async (req, res) => {
     if (response.deletedCount < 1) {
         res.status(404).send({ msg: "Note was not found or deleted." });
     } else {
-        res.status(204).send(responseBody);
+        res.status(200).send({ msg: "Note successfully deleted."});
     }
 })
 
