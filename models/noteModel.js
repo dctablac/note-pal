@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
 
-const noteSchema = {
-    title: String,
-    content: String
-}
+const noteSchema = mongoose.Schema(
+    {
+        email: String,
+        title: String,
+        content: String
+    }, { timestamps: true}
+);
 
 const Note = mongoose.model('Note', noteSchema);
 
