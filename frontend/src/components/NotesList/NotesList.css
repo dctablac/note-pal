@@ -4,6 +4,7 @@
     width: 30%;
 }
 .create-note-item {
+    background-color: white;
     border: 1px dashed rgba(0,0,0,0.5);
     cursor: pointer;
     padding: 1rem;

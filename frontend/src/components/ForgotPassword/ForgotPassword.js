@@ -16,7 +16,10 @@ export default function ForgotPassword() {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        setErrorMsg('');
+        setLoading(true);
         alert('Password reset email sent')
+        setLoading(false);
         console.log(currentUser);
     }
 

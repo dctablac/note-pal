@@ -4,16 +4,15 @@ import './NotesList.css';
 import NotesListItem from '../NotesListItem';
 
 export default function NotesList(props) {
-    const { data, showActive, activeNote, userID, handleClick } = props;
+    const { notes, makeActive, activeNote, handleClick } = props;
 
     function renderNoteList() {
         return (
-            // TODO: API call to DB for user and their notes
-            data.map((note, key) => {
+            notes.map((note, key) => {
                 if (key === activeNote) {
-                    return <NotesListItem data={note} onClick={showActive} data-id={key} key={key} className={"notes-item active"}/>
+                    return <NotesListItem key={key} data={note} onClick={makeActive} data-id={key} className={"notes-item active"}/>
                 } else {
-                    return <NotesListItem data={note} onClick={showActive} data-id={key} key={key} className={"notes-item"}/>
+                    return <NotesListItem key={key} data={note} onClick={makeActive} data-id={key} className={"notes-item"}/>
                 }
             })
         )
@@ -21,14 +20,10 @@ export default function NotesList(props) {
 
     return (
         <div id="notes-list">
-            {
-                // TODO: Will need to pass in userID in browser
-                data &&
-                renderNoteList(userID)
-            }
             <div className="create-note-item" onClick={handleClick}>
                 <p>+ New Note</p>
             </div>
+            {notes && renderNoteList()}
         </div>
     )
 }

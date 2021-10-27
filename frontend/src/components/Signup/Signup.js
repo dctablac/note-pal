@@ -25,11 +25,12 @@ export default function Signup() {
             setLoading(true);
             await signup(email.value, password.value);
             alert('Account created successfully');
+            setLoading(false);
             history.push('/notes');
         } catch(err) {
             setError(authErrorMessages[err.code]);
+            setLoading(false);
         }
-        setLoading(false);
     }
 
     const signupProps = {

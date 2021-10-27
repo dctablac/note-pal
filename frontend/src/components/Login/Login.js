@@ -21,11 +21,12 @@ export default function Login() {
             setLoading(true);
             await login(email.value, password.value);
             alert('Logged in successfully');
+            setLoading(false);
             history.push('/notes');
         } catch(err) {
             setError(authErrorMessages[err.code]);
+            setLoading(false);
         }
-        setLoading(false);
     }
 
     const loginProps = {
