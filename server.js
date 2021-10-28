@@ -1,6 +1,7 @@
 require('dotenv').config();
 const PORT = process.env.PORT || 3001;
 const DATABASE_URL = process.env.DATABASE_URL;
+const DATABASE_NAME = process.env.DATABASE_NAME;
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -11,7 +12,7 @@ app.use(express.json());
 
 // connect to mongoose
 mongoose.connect(DATABASE_URL)
-    .then(() => console.log(`Connected to mongodb database: ${DATABASE_URL}`))
+    .then(() => console.log(`Connected to mongodb database: ${DATABASE_URL}/${DATABASE_NAME}`))
     .catch((err) => console.error(err))
 // require route
 app.use("/", require('./routes/noteRoute'))
