@@ -1,11 +1,12 @@
 #notes-list {
     padding-right: 0.5rem;
     overflow-y: scroll;
+    min-width: 350px;
     width: 30%;
 }
 .create-note-item {
     background-color: white;
-    border: 1px dashed rgba(0,0,0,0.5);
+    border: 2px dashed rgba(0,0,0,0.5);
     cursor: pointer;
     padding: 1rem;
     margin-top: 1rem;

@@ -3,7 +3,7 @@
     height: 10%;
     padding: 0 2rem;
     position: relative;
-    width: 100%;
+    min-width: 100%;
 }
 
 .nav-links {

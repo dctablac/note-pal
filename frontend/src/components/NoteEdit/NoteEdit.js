@@ -1,15 +1,12 @@
+import React, { useState } from 'react'
 import axios from 'axios';
-import React, { useState } from 'react';
-import './NoteCreate.css';
-import parse from 'html-react-parser';
+import './NoteEdit.css';
 
-import { useAuth } from '../../contexts/AuthContext';
+export default function NoteEdit(props) {
+    const { note, finishEdit } = props;
 
-export default function NoteCreate(props) {
-    const { makeRefresh } = props;
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-    const { currentUser } = useAuth();
+    const [title, setTitle] = useState(note.title);
+    const [content, setContent] = useState(note.content);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -17,29 +14,34 @@ export default function NoteCreate(props) {
             return alert('Please enter a title');
         }
         const requestBody = {
-            userID: currentUser.uid,
             title: title,
             content: content
         };
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/create`, requestBody)
+        axios.patch(`${process.env.REACT_APP_BACKEND_URL}/update/${note._id}`, requestBody)
             .then(() => {
-                alert('Successfully created a note');
-                makeRefresh();
+                alert('Successfully update this note');
+                finishEdit(requestBody);
             })
             .catch((err) => console.error(err));
+    }
+
+    function handleCancel(e) {
+        e.preventDefault();
+        finishEdit(null);
     }
 
     return (
         <div id="note-create">
             <form className="create-form" onSubmit={handleSubmit}>
                 <div className="note-create-btns">
-                    <button className="create-btn create-save-btn">Create</button>
+                    <button className="create-btn create-save-btn">Save</button>
+                    <button className="create-btn create-cancel-btn" onClick={handleCancel}>Cancel</button>
                 </div>
                 <input type="text" name="create-title" className="note-create-title" 
                     onChange={(e) => setTitle(e.target.value)} value={title} placeholder="Title"/>
                 <textarea name="create-content"
                     className="note-create-content" onChange={(e) => setContent(e.target.value)} 
-                    placeholder="Enter your text here" value={parse(content)} />
+                    placeholder="Enter your text here" value={content} />
             </form>
             {/* <div id="Content" className="note-create-content" contentEditable={true}>{content}</div> */}
         </div>

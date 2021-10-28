@@ -1,5 +1,6 @@
 .notes-item {
     padding: 1rem;
+    position: relative;
 }
 .notes-item-content {
     margin-left: 1rem;
@@ -14,9 +15,42 @@
 .notes-item-content {
     color: rgba(0,0,0,60%);
 }
-.notes-item-title, .notes-item-detail {
+.notes-item-header, .notes-item-detail {
     pointer-events: none;
 }
 .active {
     background-color: gold;
+}
+
+.notes-item-header {
+    display: flex;
+    justify-content: space-between;
+}
+.notes-item-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.notes-item-icons {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: all;
+    width: 20%;
+}
+.notes-item-icon {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 100%;
+}
+.notes-item-icon svg {
+    pointer-events: none;
+}
+.notes-item-icon:hover {
+    transform: scale(1.1);
+}
+.bi {
+    height: 65%;
 }

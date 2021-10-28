@@ -3,9 +3,10 @@ import './NotesDisplay.css';
 
 import parse from 'html-react-parser';
 import NoteCreate from '../NoteCreate';
+import NoteEdit from '../NoteEdit';
 
 export default function NotesDisplay(props) {
-    const { noteToDisplay, makeRefresh } = props;
+    const { noteToDisplay, editing, makeRefresh, editNote, cancelEdit } = props;
     const { title, content, updatedAt } = noteToDisplay ? noteToDisplay : {title: null, content: null, updatedAt: null};
     const numToMonth = {
         1: 'January',
@@ -56,12 +57,17 @@ export default function NotesDisplay(props) {
                 !noteToDisplay && <NoteCreate makeRefresh={makeRefresh}/>
             }
             {
-                noteToDisplay && 
+                editing && 
+                <NoteEdit note={noteToDisplay} finishEdit={editNote} 
+                          cancelEdit={cancelEdit} />
+            }
+            {
+                !editing && noteToDisplay &&
                 <Fragment>
                     <h3 className="note-display-date">{formatUpdatedAt(updatedAt)}</h3>
                     <h2 className="note-display-title">{title}</h2>
                     <div className="note-display-content">
-                        {parse(content)}
+                        <p>{parse(content.replaceAll('\n', '<br/>'))}</p>
                     </div>
                 </Fragment>
             }

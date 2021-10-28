@@ -1,5 +1,6 @@
 #notes-display {
     padding: 1rem;
+    min-width: 500px;
     width: 70%;
 }
 .note-display-date {

@@ -10,17 +10,12 @@ export default function ForgotPassword() {
     const [loading, setLoading] = useState(false);
     const [submitBtnClass, setSubmitBtnClass] = useState('account-form-btn-disabled');
 
-    const { currentUser } = useAuth();
-
-
-
     async function handleSubmit(e) {
         e.preventDefault();
         setErrorMsg('');
         setLoading(true);
         alert('Password reset email sent')
         setLoading(false);
-        console.log(currentUser);
     }
 
     function handleInput() {
