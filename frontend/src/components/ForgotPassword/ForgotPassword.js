@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './ForgotPassword.css';
 
-import { useAuth } from '../../contexts/AuthContext';
-
 export default function ForgotPassword() {
     const [email, setEmail] = useState('');
     const [errorMsg, setErrorMsg] = useState('');

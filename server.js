@@ -1,7 +1,4 @@
 require('dotenv').config();
-const PORT = process.env.PORT || 3001;
-const DATABASE_URL = process.env.DATABASE_URL;
-const DATABASE_NAME = process.env.DATABASE_NAME;
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -9,14 +6,22 @@ const mongoose = require('mongoose');
 
 app.use(cors());
 app.use(express.json());
+const PORT = process.env.PORT || 3001;
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/notepal';
 
-// connect to mongoose
-mongoose.connect(DATABASE_URL)
-    .then(() => console.log(`Connected to mongodb database: ${DATABASE_URL}/${DATABASE_NAME}`))
+// Connect to mongoose
+mongoose.connect(MONGODB_URI)
+    .then(() => console.log(`Connected to mongodb database: ${MONGODB_URI}`))
     .catch((err) => console.error(err))
-// require route
+
+// Require routes
 app.use("/", require('./routes/noteRoute'))
 
+// Check if app is deployed
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'));
+}
+
 app.listen(PORT, () => {
-    console.log(`Express server running on port ${PORT}`);
+    console.log(`Express server running on port: ${PORT}`);
 });
