@@ -6,7 +6,7 @@ import parse from 'html-react-parser';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default function NoteCreate(props) {
-    const { makeRefresh } = props;
+    const { makeRefresh, setStatus } = props;
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const { currentUser } = useAuth();
@@ -23,7 +23,7 @@ export default function NoteCreate(props) {
         };
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/create`, requestBody)
             .then(() => {
-                alert('Successfully created a note');
+                setStatus('Note created successfully')
                 makeRefresh();
             })
             .catch((err) => console.error(err));

@@ -6,7 +6,7 @@ import NoteCreate from '../NoteCreate';
 import NoteEdit from '../NoteEdit';
 
 export default function NotesDisplay(props) {
-    const { noteToDisplay, editing, makeRefresh, editNote, cancelEdit } = props;
+    const { noteToDisplay, editing, makeRefresh, editNote, cancelEdit, setStatus } = props;
     const { title, content, updatedAt } = noteToDisplay ? noteToDisplay : {title: null, content: null, updatedAt: null};
     const numToMonth = {
         1: 'January',
@@ -54,7 +54,7 @@ export default function NotesDisplay(props) {
     return (
         <div id="notes-display">
             {
-                !noteToDisplay && <NoteCreate makeRefresh={makeRefresh}/>
+                !noteToDisplay && <NoteCreate makeRefresh={makeRefresh} setStatus={setStatus}/>
             }
             {
                 editing && 

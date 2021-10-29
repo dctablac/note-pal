@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import './Notes.css';
 import axios from 'axios';
 
 import NotesDisplay from '../NotesDisplay';
 import NotesList from '../NotesList';
+import NoteDeletePrompt from '../NoteDeletePrompt';
 
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -16,6 +17,9 @@ export default function Notes() {
     const [noteToDisplay, setNoteToDisplay] = useState(null);
     const [noteCount, setNoteCount] = useState(0);
     const [editing, setEditing] = useState(false);
+    const [deletePending, setDeletePending] = useState(false);
+    const [status, setStatus] = useState('');
+
 
     useEffect(() => {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/read/${currentUser.uid}`)
@@ -55,14 +59,25 @@ export default function Notes() {
         setNoteList([...noteList]);
     }
 
+    function handleDeleteConfirm() {
+        deleteNote(activeNote);
+        setDeletePending(false);
+    }
+
     function deleteNote(dataID) { // Given NoteList id, delete note at that index
         const note = noteList[dataID];
         // Delete note
         axios.delete(`${process.env.REACT_APP_BACKEND_URL}/delete/${note['_id']}`)
             .then(() => {
+                let lastElementIndex = noteList.length-1;
                 let newNoteList = [...noteList];
                 newNoteList.splice(dataID, 1);
-                alert('delete success');
+                setStatus('Note deleted successfully');
+                if (activeNote === lastElementIndex) {
+                    setActiveNote(noteList.length-1); // List length shortened, repoint to last element of new list
+                } else if (activeNote === 0) {
+                    setActiveNote(0); // List length shortened, repoint to first element
+                }
                 setNoteList(newNoteList);
                 setNoteToDisplay(noteList[activeNote+1]);
             })
@@ -70,17 +85,33 @@ export default function Notes() {
     }  
 
     return (
-        <div id="notes-page">
-            <div id="note-book">
-                <NotesList notes={noteList} activeNote={activeNote} makeActive={makeActive} 
-                           handleClick={createNewNote} handleDelete={(dataID) => deleteNote(dataID)}
-                           handleEdit={showEditDisplay}/>
-                <NotesDisplay noteToDisplay={noteToDisplay} editing={editing} 
-                              makeRefresh={() => {setNoteCount(noteCount+1);}}
-                              cancelEdit={cancelEdit} editNote={(edits) => editNote(activeNote, edits)}
-
-                />
+        <Fragment>
+            <div id="notes-page">
+                {
+                    (status !== '') && 
+                    <p className="notes-status">
+                        <button className="notes-status-btn" onClick={() => setStatus('')}>X</button>
+                        {status}
+                    </p>
+                }
+                <div id="note-book">
+                    <NotesList notes={noteList} activeNote={activeNote} makeActive={makeActive} 
+                            handleClick={createNewNote} handleDelete={(dataID) => deleteNote(dataID)}
+                            handleEdit={showEditDisplay} setDeletePending={setDeletePending}/>
+                    <NotesDisplay noteToDisplay={noteToDisplay} editing={editing} 
+                                makeRefresh={() => {setNoteCount(noteCount+1);}}
+                                cancelEdit={cancelEdit} editNote={(edits) => editNote(activeNote, edits)}
+                                setStatus={(msg) => setStatus(msg)}
+                    />
+                </div>
             </div>
-        </div>
+            {
+                deletePending && 
+                <NoteDeletePrompt 
+                    setDeletePending={setDeletePending} 
+                    handleDeleteConfirm={handleDeleteConfirm} 
+                />
+            }
+        </Fragment>
     )
 }

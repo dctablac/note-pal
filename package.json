@@ -10,7 +10,7 @@
     "install-client": "cd frontend && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
     "start": "node server.js",
-    "devStart": "concurrently \"nodemon server.js\" \"cd frontend && npm start\" "
+    "devStart": "concurrently \"node server.js\" \"cd frontend && npm start\" "
   },
   "repository": {
     "type": "git",

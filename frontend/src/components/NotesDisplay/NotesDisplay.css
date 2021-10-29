@@ -7,6 +7,9 @@
     color: rgba(0,0,0,0.6);
     text-align: center;
 }
+.note-display-content p {
+    word-wrap: break-word;
+}
 .no-notes-msg {
     text-align: center;
 }
