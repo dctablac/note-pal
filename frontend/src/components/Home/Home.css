@@ -1,0 +1,22 @@
+#home-page {
+    height: 100%;
+}
+.home-title {
+    animation: fadeIn 0.3s ease-in-out;
+    color: black;
+    font-size: 15vw;
+    letter-spacing: 1.5rem;
+    text-decoration: underline;
+    text-decoration-color: gold;
+}
+.home-caption {
+    animation: fadeIn 0.3s ease-in-out;
+    background-color: hsl(51, 100%, 80%);
+    box-shadow: 0.5rem 0.5rem 0 2px gold;
+    margin-left: 1rem;
+    padding: 1rem;
+}
+.home-caption p {
+    font-size: 2vw;
+    letter-spacing: 0.3rem;
+}

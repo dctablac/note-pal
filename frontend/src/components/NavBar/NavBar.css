@@ -19,7 +19,7 @@
 }
 .nav-link, .logout-btn {
     align-items: center;
-    color: white;
+    color: black;
     cursor: pointer;
     display: flex;
     font-size: 1.5rem;
@@ -30,7 +30,7 @@
 }
 .nav-link-active::before {
     animation: extend 0.2s;
-    background-color: white;
+    background-color: black;
     content: '';
     height: 5%;
     position: absolute;

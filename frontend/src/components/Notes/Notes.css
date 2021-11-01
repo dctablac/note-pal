@@ -1,5 +1,6 @@
 #notes-page {
     align-items: center;
+    animation: fadeIn 0.2s ease-in-out;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -13,6 +14,7 @@
 }
 
 .notes-status {
+    animation: fadeIn 0.2s ease-in-out;
     background-color: rgba(128, 128, 128, 0.1);
     padding: 1rem;
     transition-duration: 0.5s;

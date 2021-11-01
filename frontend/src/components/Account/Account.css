@@ -1,5 +1,6 @@
 #account-page {
     align-items: center;
+    animation: fadeIn 0.2s ease-in-out;
     display: flex;
     height: 100%;
     justify-content: center;
