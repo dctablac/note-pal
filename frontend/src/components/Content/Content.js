@@ -23,7 +23,7 @@ export default function Content(props) {
                 <Route path="/about" component={About} />
                 <PrivateRoute path="/notes" component={Notes} />
                 <PublicRoute path="/signup" restricted={true} component={Signup} />
-                <Route path="/account" component={props => <Account isNightMode={isNightMode} makeNightMode={makeNightMode}/>} />
+                <PrivateRoute path="/account" component={props => <Account isNightMode={isNightMode} makeNightMode={makeNightMode}/>} />
                 <PublicRoute path="/forgot-password" restricted={true} component={ForgotPassword}/>
                 <PublicRoute path="/login" restricted={true} component={Login} />
                 <PrivateRoute path="/" component={PageNotFound} />
