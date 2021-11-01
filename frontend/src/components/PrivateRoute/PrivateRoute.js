@@ -7,7 +7,7 @@ import { useAuth } from '../../contexts/AuthContext';
 // If so, user can access the page at the route
 // Else, redirect to login page
 
-export default function PrivateRoute({ component: Component, ...rest} ) {
+export default function PrivateRoute({ component: Component, ...rest}) {
     const { currentUser } = useAuth();
 
     return (

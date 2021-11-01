@@ -1,6 +1,5 @@
 #account-page {
     align-items: center;
-    animation: fadeIn 0.2s ease-in-out;
     display: flex;
     height: 100%;
     justify-content: center;
@@ -21,17 +20,23 @@
     display: none;
 }
 #night-mode-switch-label, #night-mode-switch-label-active {
-    background-color: white;
-    border: 1px solid grey;
+    border: 1px solid lightgrey;
     border-radius: 34px;
     cursor: pointer;
     height: 3rem;
     position: relative;
     width: 6rem;
 }
+#night-mode-switch-label {
+    animation: changeToWhite 0.4s ease-in-out forwards;
+}
+#night-mode-switch-label-active {
+    animation: changeToGreen 0.4s ease-in-out forwards;
+}
 #night-mode-switch-label::before {
-    background-color: grey;
-    border: 1px solid grey;
+    animation: slideLeft 0.4s ease-in-out forwards;
+    background-color: darkgrey;
+
     border-radius: 34px;
     content: '';
     height: 100%;
@@ -39,12 +44,26 @@
     width: 50%;
 }
 #night-mode-switch-label-active::before {
-    background-color: grey;
-    border: 1px solid grey;
+    animation: slideRight 0.4s ease-in-out forwards;
+    background-color: darkgrey;
     border-radius: 34px;
     content: '';
     height: 100%;
     position: absolute;
-    right: 0;
     width: 50%;
+}
+@keyframes slideRight {
+    0% { right: 50%; }
+    100% { right: 0; }
+}
+@keyframes slideLeft {
+    0% { left: 50%; }
+    100% { left: 0; }
+}
+@keyframes changeToGreen {
+    100% { background-color: lightgreen; }
+}
+@keyframes changeToWhite {
+    0% { background-color: lightgreen;}
+    100% { background-color: white; }
 }

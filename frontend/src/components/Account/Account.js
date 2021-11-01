@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Account.css';
 import { useAuth } from '../../contexts/AuthContext';
 
-export default function Account() {
+export default function Account(props) {
+    const { isNightMode, makeNightMode } = props;
     const { currentUser } = useAuth();
 
     function getCreationDate(user) {
@@ -28,7 +29,7 @@ export default function Account() {
                 </div>
                 <div className="account-detail">
                     <label>Night Mode</label>
-                    <label for="night-mode-switch" id="night-mode-switch-label">
+                    <label htmlFor="night-mode-switch" id={isNightMode ? "night-mode-switch-label-active" : "night-mode-switch-label"} onClick={() => makeNightMode()}>
                         <input type="checkbox" name="night-mode-switch" id="night-mode-switch"/>
                     </label>
                 </div>

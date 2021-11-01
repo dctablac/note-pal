@@ -13,7 +13,9 @@ import Account from '../Account';
 import ForgotPassword from '../ForgotPassword';
 import PageNotFound from '../PageNotFound';
 
-export default function Content() {
+export default function Content(props) {
+    const { isNightMode, makeNightMode } = props;
+
     return (
         <div id="content">
             <Switch>
@@ -21,7 +23,7 @@ export default function Content() {
                 <Route path="/about" component={About} />
                 <PrivateRoute path="/notes" component={Notes} />
                 <PublicRoute path="/signup" restricted={true} component={Signup} />
-                <PrivateRoute path="/account" component={Account} />
+                <Route path="/account" component={props => <Account isNightMode={isNightMode} makeNightMode={makeNightMode}/>} />
                 <PublicRoute path="/forgot-password" restricted={true} component={ForgotPassword}/>
                 <PublicRoute path="/login" restricted={true} component={Login} />
                 <PrivateRoute path="/" component={PageNotFound} />
