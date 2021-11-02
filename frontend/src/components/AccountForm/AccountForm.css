@@ -33,6 +33,7 @@
 
 .account-form-btn,.account-form-btn-disabled {
     border: none;
+    transition-duration: 0.2s;
 }
 .account-form-btn {
     background-color: gold;

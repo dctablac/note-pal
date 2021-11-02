@@ -70,6 +70,13 @@ html, body, #root {
     background-color: rgb(128, 128, 128, 0.5);
 }
 
+.night-mode .account-form-btn {
+    background-color: gold;
+}
+.night-mode .account-form-btn-disabled {
+    background-color: hsl(51, 100%, 30%);
+}
+
 
 /***********************************************************/
 
