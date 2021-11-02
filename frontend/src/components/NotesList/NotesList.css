@@ -1,5 +1,6 @@
 #notes-list {
     padding-right: 0.5rem;
+    position: relative;
     overflow-y: scroll;
     min-width: 350px;
     width: 30%;
@@ -13,4 +14,11 @@
 }
 .create-note-item:hover {
     background-color: rgba(0,0,0,0.05);
+}
+.notes-list-block {
+    background-color: rgba(0,0,0,0.2);
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
 }

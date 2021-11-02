@@ -5,7 +5,8 @@ import NotesListItem from '../NotesListItem';
 
 export default function NotesList(props) {
     const { notes, makeActive, activeNote, 
-            handleClick, handleEdit, setDeletePending 
+            handleClick, handleEdit, setDeletePending,
+            editing 
           } = props;
 
     function renderNoteList() {
@@ -22,6 +23,7 @@ export default function NotesList(props) {
 
     return (
         <div id="notes-list">
+            {editing && <div className="notes-list-block"></div>}
             <div className="create-note-item" onClick={handleClick}>
                 <p>+ New Note</p>
             </div>

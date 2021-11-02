@@ -45,7 +45,7 @@ html, body, #root {
 }
 
 .night-mode .active-note,
-.active-note * {
+.night-mode .active-note * {
     background-color: hsl(51, 100%, 30%);
 }
 
@@ -56,8 +56,18 @@ html, body, #root {
     background-color: gray;
 }
 
-.night-mode #account-details {
+.night-mode #account-details,
+.night-mode .create-btn {
     background-color: hsl(51, 100%, 30%);
+}
+
+.night-mode input,
+.night-mode textarea {
+    border-color: white;
+}
+
+.night-mode .notes-list-block {
+    background-color: rgb(128, 128, 128, 0.5);
 }
 
 

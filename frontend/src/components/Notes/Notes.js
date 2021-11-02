@@ -97,7 +97,7 @@ export default function Notes() {
                 <div id="note-book">
                     <NotesList notes={noteList} activeNote={activeNote} makeActive={makeActive} 
                             handleClick={createNewNote} handleDelete={(dataID) => deleteNote(dataID)}
-                            handleEdit={showEditDisplay} setDeletePending={setDeletePending}/>
+                            handleEdit={showEditDisplay} setDeletePending={setDeletePending} editing={editing}/>
                     <NotesDisplay noteToDisplay={noteToDisplay} editing={editing} 
                                 makeRefresh={() => {setNoteCount(noteCount+1);}}
                                 cancelEdit={cancelEdit} editNote={(edits) => editNote(activeNote, edits)}
