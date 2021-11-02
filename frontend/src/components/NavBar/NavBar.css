@@ -1,6 +1,9 @@
 #nav-bar {
+    align-items: center;
     background-color: hsl(51, 100%, 50%);
+    display: flex;
     height: 10%;
+    justify-content: space-between;
     padding: 0 2rem;
     position: relative;
     min-width: 100%;
@@ -44,4 +47,70 @@
     to {
         transform: scaleX(1);
     }
+}
+
+.bi-moon-fill {
+    background: none;
+    fill: black;
+    transition-duration: 0.4s;
+    width: 100%;
+}
+.night-mode-switch-container {
+    align-items: center;
+    display: flex;
+    min-width: 200px;
+    width: 10%;
+    height: 50%;
+}
+#night-mode-switch {
+    display: none;
+}
+#night-mode-switch-label, #night-mode-switch-label-active {
+    border: 1px solid lightgrey;
+    border-radius: 34px;
+    cursor: pointer;
+    height: 100%;
+    position: relative;
+    transition-duration: 0.4s;
+    width: 100%;
+}
+#night-mode-switch-label {
+    animation: sliderColorOff 0.3s ease-in-out forwards;
+}
+#night-mode-switch-label-active {
+    animation: sliderColorOn 0.3s ease-in-out forwards;
+}
+#night-mode-switch-label::before {
+    animation: slideLeft 0.3s ease-in-out forwards;
+    background-color: darkgrey;
+
+    border-radius: 34px;
+    content: '';
+    height: 100%;
+    position: absolute;
+    width: 50%;
+}
+#night-mode-switch-label-active::before {
+    animation: slideRight 0.3s ease-in-out forwards;
+    background-color: darkgrey;
+    border-radius: 34px;
+    content: '';
+    height: 100%;
+    position: absolute;
+    width: 50%;
+}
+@keyframes slideRight {
+    0% { right: 50%; }
+    100% { right: 0; }
+}
+@keyframes slideLeft {
+    0% { left: 50%; }
+    100% { left: 0; }
+}
+@keyframes sliderColorOn {
+    100% { background-color: lightgreen; }
+}
+@keyframes sliderColorOff {
+    0% { background-color: lightgreen;}
+    100% { background-color: white; }
 }

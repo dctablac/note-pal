@@ -4,13 +4,15 @@ import './NotesList.css';
 import NotesListItem from '../NotesListItem';
 
 export default function NotesList(props) {
-    const { notes, makeActive, activeNote, handleClick, handleEdit, setDeletePending } = props;
+    const { notes, makeActive, activeNote, 
+            handleClick, handleEdit, setDeletePending 
+          } = props;
 
     function renderNoteList() {
         return (
             notes.map((note, key) => {
                 if (key === activeNote) {
-                    return <NotesListItem key={key} data={note} onClick={makeActive} setDeletePending={setDeletePending} handleEdit={handleEdit} data-id={key} className={"notes-item active"}/>
+                    return <NotesListItem key={key} data={note} onClick={makeActive} setDeletePending={setDeletePending} handleEdit={handleEdit} data-id={key} className={"notes-item active-note"}/>
                 } else {
                     return <NotesListItem key={key} data={note} onClick={makeActive} setDeletePending={setDeletePending} handleEdit={handleEdit} data-id={key} className={"notes-item"}/>
                 }

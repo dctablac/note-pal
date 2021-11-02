@@ -18,7 +18,52 @@ html, body, #root {
     justify-content: center;
 }
 
+/******************** Night Mode Styles ********************/
+
+.night-mode {
+    background-color: hsl(0, 0%, 0%);
+    color: white;
+}
+
+.night-mode * {
+    background-color: hsl(0, 0%, 0%);
+    color: white;
+}
+
+.night-mode .nav-link-active::before {
+    background-color: white;
+}
+
+.night-mode .night-mode-switch-container, 
+.nav-links, .nav-link, .logout-btn, 
+.bi-moon-fill, .account-detail, .account-detail * {
+    background: none;
+}
+
+.night-mode .bi-moon-fill {
+    fill: white;
+}
+
+.night-mode .active-note,
+.active-note * {
+    background-color: hsl(51, 100%, 30%);
+}
+
+.night-mode .create-note-item {
+    border-color: white;
+}
+.night-mode .create-note-item:hover, .night-mode .create-note-item:hover p {
+    background-color: gray;
+}
+
+.night-mode #account-details {
+    background-color: hsl(51, 100%, 30%);
+}
+
+
+/***********************************************************/
+
 @keyframes fadeIn {
-    from { opacity: 0; }
+    from { opacity: 0.7; }
     to { opacity: 1; }
 }

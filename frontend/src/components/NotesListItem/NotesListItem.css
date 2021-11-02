@@ -3,6 +3,7 @@
     position: relative;
 }
 .notes-item-content {
+    color: rgba(0,0,0,60%);
     margin-left: 1rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -12,13 +13,10 @@
     align-items: center;
     display: flex;
 }
-.notes-item-content {
-    color: rgba(0,0,0,60%);
-}
 .notes-item-header, .notes-item-detail {
     pointer-events: none;
 }
-.active {
+.active-note {
     background-color: gold;
 }
 
