@@ -78,7 +78,7 @@ html, body, #root {
 }
 
 
-/***********************************************************/
+/******************** General Animations ********************/
 
 
 @keyframes fadeIn {
@@ -93,4 +93,23 @@ html, body, #root {
     #account-details {
         width: 90%;
     }
+    #home-page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .home-title {
+        font-size: 20vw;
+    }
+    .home-caption {
+        box-shadow: 0 0 0 2px gold;
+    }
+    .notes-list,
+    .notes-display {
+        min-width: 100%; /* Forces list and display to take full width of page (not share container) */
+    }
+    .notes-display {
+        padding: 1rem;
+    }
+
 }

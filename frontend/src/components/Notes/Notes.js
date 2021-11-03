@@ -19,6 +19,7 @@ export default function Notes() {
     const [editing, setEditing] = useState(false);
     const [deletePending, setDeletePending] = useState(false);
     const [status, setStatus] = useState('');
+    const [isHiddenList, setIsHiddenList] = useState(false);
 
 
     useEffect(() => {
@@ -33,16 +34,19 @@ export default function Notes() {
         const newActiveNoteKey = parseInt(e.target.getAttribute("data-id"));
         setActiveNote(newActiveNoteKey);
         setNoteToDisplay(noteList[newActiveNoteKey]);
+        setIsHiddenList(true);
     }
 
     function createNewNote() {
         // Set noteToDisplay to null -> Shows NoteCreate component
         setNoteToDisplay(null);
+        setIsHiddenList(true);
     }
 
     function showEditDisplay(dataID) {
         // Show edit component in display
         setEditing(true);
+        setIsHiddenList(true);
     }
 
     function cancelEdit() {
@@ -62,6 +66,7 @@ export default function Notes() {
     function handleDeleteConfirm() {
         deleteNote(activeNote);
         setDeletePending(false);
+        setIsHiddenList(false);
     }
 
     function deleteNote(dataID) { // Given NoteList id, delete note at that index
@@ -94,23 +99,21 @@ export default function Notes() {
                         {status}
                     </p>
                 }
-                <div id="note-book">
                     <NotesList notes={noteList} activeNote={activeNote} makeActive={makeActive} 
                             handleClick={createNewNote} handleDelete={(dataID) => deleteNote(dataID)}
-                            handleEdit={showEditDisplay} setDeletePending={setDeletePending} editing={editing}/>
+                            handleEdit={showEditDisplay} setDeletePending={setDeletePending} editing={editing}
+                            isHiddenList={isHiddenList} setIsHiddenList={setIsHiddenList}
+                    />
                     <NotesDisplay noteToDisplay={noteToDisplay} editing={editing} 
                                 makeRefresh={() => {setNoteCount(noteCount+1);}}
                                 cancelEdit={cancelEdit} editNote={(edits) => editNote(activeNote, edits)}
-                                setStatus={(msg) => setStatus(msg)}
+                                setStatus={(msg) => setStatus(msg)} isHiddenList={isHiddenList} 
+                                setIsHiddenList={setIsHiddenList}
                     />
-                </div>
             </div>
             {
                 deletePending && 
-                <NoteDeletePrompt 
-                    setDeletePending={setDeletePending} 
-                    handleDeleteConfirm={handleDeleteConfirm} 
-                />
+                <NoteDeletePrompt setDeletePending={setDeletePending} handleDeleteConfirm={handleDeleteConfirm}/>
             }
         </Fragment>
     )

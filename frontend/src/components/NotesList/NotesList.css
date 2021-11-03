@@ -1,10 +1,9 @@
-#notes-list {
-    padding-right: 0.5rem;
-    position: relative;
+.notes-list {
+    height: 90vh;
+    padding: 0.5rem;
     overflow-y: scroll;
-    min-width: 350px;
+    position: relative;
     width: 30%;
-    height: 100%;
 }
 .create-note-item {
     background-color: white;
@@ -23,15 +22,17 @@
     z-index: 1;
 }
 
-.bi-caret-right {
-    cursor: pointer;
+.bi-caret-left {
     width: 10%;
 }
-.notes-list-arrow {
+
+
+.hide-notes-list-arrow {
+    align-items: center;
+    cursor: pointer;
     display: flex;
     justify-content: flex-end;
 }
-.notes-list-hidden {
-    transform: translateX(-110%);
-    transition-duration: 0.5s;
+.hidden-notes-list {
+    display: none;
 }

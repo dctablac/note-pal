@@ -1,6 +1,7 @@
-#notes-display {
+.notes-display {
+    display: flex;
+    flex-direction: column;
     padding: 1rem;
-    min-width: 500px;
     width: 70%;
 }
 .note-display-date {
@@ -12,4 +13,18 @@
 }
 .no-notes-msg {
     text-align: center;
+}
+.note-display-shift {
+    padding: 1rem;
+    width: 100%;
+}
+.bi-caret-right {
+    width: 5%;
+}
+.show-notes-list-arrow {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 10%;
+    width: 100%;
 }

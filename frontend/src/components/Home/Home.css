@@ -5,7 +5,8 @@
     animation: fadeIn 0.3s ease-in-out;
     color: black;
     font-size: 15vw;
-    letter-spacing: 1.5rem;
+    letter-spacing: 0.3rem;
+    text-align: center;
     text-decoration: underline;
     text-decoration-color: gold;
 }

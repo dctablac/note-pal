@@ -1,26 +1,21 @@
 #notes-page {
-    align-items: center;
     animation: fadeIn 0.2s ease-in-out;
     display: flex;
-    flex-direction: column;
     height: 100%;
-    justify-content: center;
-}
-
-#note-book {
-    display: flex;
-    height: 98%;
-    width: 98%;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .notes-status {
     animation: fadeIn 0.2s ease-in-out;
     background-color: hsla(0, 0%, 80%);
     padding: 1rem;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
     transition-duration: 0.5s;
     z-index: 1;
 }
-
 .notes-status-btn {
     cursor: pointer;
     font-weight: bold;
