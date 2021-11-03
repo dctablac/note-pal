@@ -4,13 +4,13 @@
     overflow-y: scroll;
     min-width: 350px;
     width: 30%;
+    height: 100%;
 }
 .create-note-item {
     background-color: white;
-    border: 0.4rem dashed black;
+    border: 0.2rem dashed black;
     cursor: pointer;
     padding: 1rem;
-    margin-top: 1rem;
 }
 .create-note-item:hover {
     background-color: rgba(0,0,0,0.05);
@@ -21,4 +21,17 @@
     position: absolute;
     width: 100%;
     z-index: 1;
+}
+
+.bi-caret-right {
+    cursor: pointer;
+    width: 10%;
+}
+.notes-list-arrow {
+    display: flex;
+    justify-content: flex-end;
+}
+.notes-list-hidden {
+    transform: translateX(-110%);
+    transition-duration: 0.5s;
 }

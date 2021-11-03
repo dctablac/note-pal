@@ -4,9 +4,8 @@
     display: flex;
     height: 10%;
     justify-content: space-between;
-    padding: 0 2rem;
     position: relative;
-    min-width: 100%;
+    width: 100%;
 }
 
 .nav-links {
@@ -25,7 +24,8 @@
     color: black;
     cursor: pointer;
     display: flex;
-    font-size: 1.5rem;
+    flex-wrap: nowrap;
+    font-size: 1em;
     height: 100%;
     margin: 0 0.5rem;
     position: relative;
@@ -57,10 +57,11 @@
 }
 .night-mode-switch-container {
     align-items: center;
+    cursor: pointer;
     display: flex;
-    min-width: 200px;
-    width: 10%;
     height: 50%;
+    max-width: 175px;
+    width: 100%;
 }
 #night-mode-switch {
     display: none;

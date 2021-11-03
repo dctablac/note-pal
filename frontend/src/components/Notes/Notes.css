@@ -15,9 +15,10 @@
 
 .notes-status {
     animation: fadeIn 0.2s ease-in-out;
-    background-color: rgba(128, 128, 128, 0.1);
+    background-color: hsla(0, 0%, 80%);
     padding: 1rem;
     transition-duration: 0.5s;
+    z-index: 1;
 }
 
 .notes-status-btn {
