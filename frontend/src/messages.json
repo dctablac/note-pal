@@ -1,0 +1,17 @@
+{
+    "LOGIN_FORM_TITLE": "Login",
+    "LOGIN_REDIRECT_MSG": "Already have an account?",
+    "LOGIN_REDIRECT_LINK": "/login",
+    "LOGIN_REDIRECT_LABEL": "Login",
+    "LOGIN_SUCCESS": "Logged in successfully.",
+    "NOTE_CREATE_SUCCESS": "Note created successfully.",
+    "NOTE_EDIT_SUCCESS": "Note saved successfully.",
+    "NOTE_DELETE_SUCCESS": "Note deleted successfully.",
+    "PASSWORD_MISMATCH": "Passwords do not match.",
+    "SIGNUP_FORM_TITLE": "Sign Up",
+    "SIGNUP_REDIRECT_MSG": "Don't have an account?",
+    "SIGNUP_REDIRECT_LINK": "/signup",
+    "SIGNUP_REDIRECT_LABEL": "Sign Up",
+    "SIGNUP_SUCCESS": "Account registered successfully.",
+    "TITLE_REQUIRED": "Please enter a title."
+}

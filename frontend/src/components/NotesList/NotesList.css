@@ -1,3 +1,4 @@
+.hidden-notes-list,
 .notes-list {
     height: 90vh;
     padding: 0.5rem;
@@ -15,24 +16,12 @@
     background-color: rgba(0,0,0,0.05);
 }
 .notes-list-block {
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(0,0,0,0.4);
     height: 100%;
     position: absolute;
     width: 100%;
     z-index: 1;
 }
-
 .bi-caret-left {
     width: 10%;
-}
-
-
-.hide-notes-list-arrow {
-    align-items: center;
-    cursor: pointer;
-    display: flex;
-    justify-content: flex-end;
-}
-.hidden-notes-list {
-    display: none;
 }

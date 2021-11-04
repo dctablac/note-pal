@@ -10,6 +10,7 @@ import { useAuth } from '../../contexts/AuthContext';
 
 // This will be main notes container. Utilizing NotesList and NotesDisplay components
 export default function Notes() {
+    const MESSAGES = require('../../messages.json');
     const { currentUser } = useAuth();
 
     const [activeNote, setActiveNote] = useState(0);
@@ -60,6 +61,7 @@ export default function Notes() {
         noteList[dataID].title = edits.title;
         noteList[dataID].content = edits.content;
         setEditing(false);
+        setStatus(MESSAGES.NOTE_EDIT_SUCCESS);
         setNoteList([...noteList]);
     }
 
@@ -67,6 +69,7 @@ export default function Notes() {
         deleteNote(activeNote);
         setDeletePending(false);
         setIsHiddenList(false);
+        setStatus(MESSAGES.NOTE_DELETE_SUCCESS);
     }
 
     function deleteNote(dataID) { // Given NoteList id, delete note at that index
@@ -105,7 +108,7 @@ export default function Notes() {
                             isHiddenList={isHiddenList} setIsHiddenList={setIsHiddenList}
                     />
                     <NotesDisplay noteToDisplay={noteToDisplay} editing={editing} 
-                                makeRefresh={() => {setNoteCount(noteCount+1);}}
+                                setEditing={setEditing} makeRefresh={() => {setNoteCount(noteCount+1);}}
                                 cancelEdit={cancelEdit} editNote={(edits) => editNote(activeNote, edits)}
                                 setStatus={(msg) => setStatus(msg)} isHiddenList={isHiddenList} 
                                 setIsHiddenList={setIsHiddenList}
@@ -113,7 +116,9 @@ export default function Notes() {
             </div>
             {
                 deletePending && 
-                <NoteDeletePrompt setDeletePending={setDeletePending} handleDeleteConfirm={handleDeleteConfirm}/>
+                <NoteDeletePrompt setDeletePending={setDeletePending} handleDeleteConfirm={handleDeleteConfirm}
+                                setStatus={setStatus}
+                />
             }
         </Fragment>
     )

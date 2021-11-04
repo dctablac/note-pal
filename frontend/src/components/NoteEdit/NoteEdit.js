@@ -3,7 +3,8 @@ import axios from 'axios';
 import './NoteEdit.css';
 
 export default function NoteEdit(props) {
-    const { note, finishEdit } = props;
+    const MESSAGES = require('../../messages.json');
+    const { note, finishEdit, setStatus } = props;
 
     const [title, setTitle] = useState(note.title);
     const [content, setContent] = useState(note.content);
@@ -11,7 +12,7 @@ export default function NoteEdit(props) {
     function handleSubmit(e) {
         e.preventDefault();
         if (title === '') {
-            return alert('Please enter a title');
+            return setStatus(MESSAGES.TITLE_REQUIRED);
         }
         const requestBody = {
             title: title,
@@ -19,7 +20,6 @@ export default function NoteEdit(props) {
         };
         axios.patch(`${process.env.REACT_APP_BACKEND_URL}/update/${note._id}`, requestBody)
             .then(() => {
-                alert('Successfully update this note');
                 finishEdit(requestBody);
             })
             .catch((err) => console.error(err));

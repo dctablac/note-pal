@@ -7,7 +7,8 @@ import { authErrorMessages } from '../../firebase.js';
 import { useHistory } from 'react-router-dom';
 
 export default function Login() {
-    const [error, setError] = useState('');
+    const MESSAGES = require('../../messages.json');
+    const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const { login } = useAuth();
     const history = useHistory();
@@ -17,26 +18,24 @@ export default function Login() {
         const { email, password } = e.target.elements;
 
         try {
-            setError('');
+            setMessage('');
             setLoading(true);
             await login(email.value, password.value);
-            alert('Logged in successfully');
-            setLoading(false);
             history.push('/notes');
         } catch(err) {
-            setError(authErrorMessages[err.code]);
+            setMessage(authErrorMessages[err.code]);
             setLoading(false);
         }
     }
 
     const loginProps = {
         handleSubmit: handleSubmit,
-        errorMsg: error,
+        errorMsg: message,
         loading: loading,
-        title: 'Login',
-        footerMsg: 'Don\'t have an account?',
-        footerLink: '/signup',
-        footerLinkLabel: 'Sign Up',
+        title: MESSAGES.LOGIN_FORM_TITLE,
+        footerMsg: MESSAGES.SIGNUP_REDIRECT_MSG,
+        footerLink: MESSAGES.SIGNUP_REDIRECT_LINK,
+        footerLinkLabel: MESSAGES.SIGNUP_REDIRECT_LABEL,
         checkPassConfirmation: false
     }
 

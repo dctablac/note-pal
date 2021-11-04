@@ -6,6 +6,7 @@ import parse from 'html-react-parser';
 import { useAuth } from '../../contexts/AuthContext';
 
 export default function NoteCreate(props) {
+    const MESSAGES = require('../../messages.json');
     const { makeRefresh, setStatus } = props;
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
@@ -14,7 +15,7 @@ export default function NoteCreate(props) {
     function handleSubmit(e) {
         e.preventDefault();
         if (title === '') {
-            return alert('Please enter a title');
+            return setStatus(MESSAGES.TITLE_REQUIRED);
         }
         const requestBody = {
             userID: currentUser.uid,
@@ -23,7 +24,7 @@ export default function NoteCreate(props) {
         };
         axios.post(`${process.env.REACT_APP_BACKEND_URL}/create`, requestBody)
             .then(() => {
-                setStatus('Note created successfully')
+                setStatus(MESSAGES.NOTE_CREATE_SUCCESS);
                 makeRefresh();
             })
             .catch((err) => console.error(err));

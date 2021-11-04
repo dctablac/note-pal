@@ -7,7 +7,8 @@ import { authErrorMessages } from '../../firebase.js';
 import { useHistory } from 'react-router-dom';
 
 export default function Signup() {
-    const [error, setError] = useState('');
+    const MESSAGES = require('../../messages.json');
+    const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);
     const { signup } = useAuth();
     const history = useHistory();
@@ -18,29 +19,27 @@ export default function Signup() {
         const passwordConfirm = e.target.elements['password-confirm'];
 
         if (password.value !== passwordConfirm.value) {
-            return setError('Passwords do not match');
+            return setMessage(MESSAGES.PASSWORD_MISMATCH);
         }
         try {
-            setError('');
+            setMessage('');
             setLoading(true);
             await signup(email.value, password.value);
-            alert('Account created successfully');
-            setLoading(false);
             history.push('/notes');
         } catch(err) {
-            setError(authErrorMessages[err.code]);
+            setMessage(authErrorMessages[err.code]);
             setLoading(false);
         }
     }
 
     const signupProps = {
         handleSubmit: handleSubmit,
-        errorMsg: error,
+        errorMsg: message,
         loading: loading,
-        title: 'Sign Up',
-        footerMsg: 'Already have an account?',
-        footerLink: '/login',
-        footerLinkLabel: 'Login',
+        title: MESSAGES.SIGNUP_FORM_TITLE,
+        footerMsg: MESSAGES.LOGIN_REDIRECT_MSG,
+        footerLink: MESSAGES.LOGIN_REDIRECT_LINK,
+        footerLinkLabel: MESSAGES.LOGIN_REDIRECT_LABEL,
         checkPassConfirmation: true
     }
 

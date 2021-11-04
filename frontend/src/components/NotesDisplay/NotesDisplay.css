@@ -4,27 +4,21 @@
     padding: 1rem;
     width: 70%;
 }
+.notes-display-header,
+.notes-display-edit-icon,
+.show-notes-list-arrow {
+    display: none;
+}
 .note-display-date {
     color: rgba(0,0,0,0.6);
     text-align: center;
+}
+.note-display-title {
+    word-wrap: break-word;
 }
 .note-display-content p {
     word-wrap: break-word;
 }
 .no-notes-msg {
     text-align: center;
-}
-.note-display-shift {
-    padding: 1rem;
-    width: 100%;
-}
-.bi-caret-right {
-    width: 5%;
-}
-.show-notes-list-arrow {
-    align-items: center;
-    cursor: pointer;
-    display: flex;
-    height: 10%;
-    width: 100%;
 }
