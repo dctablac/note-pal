@@ -1,0 +1,32 @@
+#about-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: 2%;
+}
+.about-panel {
+    display: flex;
+    justify-content: center;
+}
+.about-panel-info {
+    padding: 2%;
+    width: 50%;
+}
+#about-page footer {
+    background-color: gold;
+    margin-top: 2%;
+    text-align: center;
+}
+
+@media (max-width: 1200px) {
+    .about-panel {
+        flex-direction: column-reverse;
+    }
+    .about-panel:nth-child(2) {
+        flex-direction: column;
+    }
+    .about-panel-info {
+        text-align: center;
+        width: 100%;
+    }
+}
