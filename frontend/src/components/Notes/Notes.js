@@ -60,6 +60,7 @@ export default function Notes() {
         }
         noteList[dataID].title = edits.title;
         noteList[dataID].content = edits.content;
+        noteList[dataID].updatedAt = Date.now()
         setEditing(false);
         setStatus(MESSAGES.NOTE_EDIT_SUCCESS);
         setNoteList([...noteList]);
