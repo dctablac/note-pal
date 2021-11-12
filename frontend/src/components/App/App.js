@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
 import { AuthProvider } from '../../contexts/AuthContext';
 import Content from '../Content';
 import NavBar from '../NavBar';
@@ -15,10 +15,8 @@ export default function App() {
 
     return (
         <AuthProvider>
-        <Fragment>
           <NavBar isNightMode={isNightMode} makeNightMode={makeNightMode}/>
           <Content isNightMode={isNightMode} />
-        </Fragment>
         </AuthProvider>
     );
 }

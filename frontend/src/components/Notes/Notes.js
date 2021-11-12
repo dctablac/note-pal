@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Notes.css';
 import axios from 'axios';
 
@@ -7,6 +7,7 @@ import NotesList from '../NotesList';
 import NoteDeletePrompt from '../NoteDeletePrompt';
 
 import { useAuth } from '../../contexts/AuthContext';
+import { NotesProvider } from '../../contexts/NotesContext';
 
 // This will be main notes container. Utilizing NotesList and NotesDisplay components
 export default function Notes() {
@@ -94,7 +95,7 @@ export default function Notes() {
     }  
 
     return (
-        <Fragment>
+        <NotesProvider>
             <div id="notes-page">
                 {
                     (status !== '') && 
@@ -121,6 +122,6 @@ export default function Notes() {
                                 setStatus={setStatus}
                 />
             }
-        </Fragment>
+        </NotesProvider>
     )
 }
