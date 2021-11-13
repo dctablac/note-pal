@@ -1,33 +1,39 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import './NoteCreate.css';
 import parse from 'html-react-parser';
 
+
 import { useAuth } from '../../contexts/AuthContext';
+import { useNotes } from '../../contexts/NotesContext';
 
 export default function NoteCreate(props) {
     const MESSAGES = require('../../messages.json');
-    const { makeRefresh, setStatus } = props;
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const { currentUser } = useAuth();
 
-    function handleSubmit(e) {
+    const { currentUser } = useAuth();
+    const { createNote, 
+            setStatus, 
+            getNotes 
+        } = useNotes();
+
+    async function handleSubmit(e) {
         e.preventDefault();
-        if (title === '') {
-            return setStatus(MESSAGES.TITLE_REQUIRED);
+        try {
+            if (title === '') {
+                return setStatus(MESSAGES.TITLE_REQUIRED);
+            }
+            const requestBody = {
+                userID: currentUser.uid,
+                title: title,
+                content: content
+            };
+            await createNote(requestBody);
+            setStatus(MESSAGES.NOTE_CREATE_SUCCESS);
+            await getNotes();
+        } catch(err) {
+            console.error(err);
         }
-        const requestBody = {
-            userID: currentUser.uid,
-            title: title,
-            content: content
-        };
-        axios.post(`${process.env.REACT_APP_BACKEND_URL}/create`, requestBody)
-            .then(() => {
-                setStatus(MESSAGES.NOTE_CREATE_SUCCESS);
-                makeRefresh();
-            })
-            .catch((err) => console.error(err));
     }
 
     return (
@@ -36,11 +42,21 @@ export default function NoteCreate(props) {
                 <div className="note-create-btns">
                     <button className="create-btn create-save-btn">Create</button>
                 </div>
-                <input type="text" name="create-title" className="note-create-title" 
-                    onChange={(e) => setTitle(e.target.value)} value={title} placeholder="Title"/>
-                <textarea name="create-content"
-                    className="note-create-content" onChange={(e) => setContent(e.target.value)} 
-                    placeholder="Enter your text here" value={parse(content)} />
+                <input 
+                    className="note-create-title" 
+                    name="create-title" 
+                    onChange={(e) => setTitle(e.target.value)} 
+                    placeholder="Title"
+                    type="text" 
+                    value={title} 
+                />
+                <textarea 
+                    className="note-create-content" 
+                    name="create-content"
+                    onChange={(e) => setContent(e.target.value)} 
+                    placeholder="Enter your text here" 
+                    value={parse(content)} 
+                />
             </form>
             {/* <div id="Content" className="note-create-content" contentEditable={true}>{content}</div> */}
         </div>

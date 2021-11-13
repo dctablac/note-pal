@@ -5,67 +5,25 @@ import parse from 'html-react-parser';
 import NoteCreate from '../NoteCreate';
 import NoteEdit from '../NoteEdit';
 
-export default function NotesDisplay(props) {
-    const { noteToDisplay, editing, setEditing, makeRefresh, 
-            editNote, cancelEdit, setStatus,
-            isHiddenList, setIsHiddenList
-          } = props;
+import { useNotes } from '../../contexts/NotesContext';
+import { noteDisplayFormatUpdatedAt } from '../../dateFormat';
+
+export default function NotesDisplay() {
+    const { noteToDisplay, editPending, isHiddenList, setIsHiddenList, setEditPending } = useNotes();
     const { title, content, updatedAt } = noteToDisplay ? noteToDisplay : {title: null, content: null, updatedAt: null};
-    const numToMonth = {
-        1: 'January',
-        2: 'February',
-        3: 'March',
-        4: 'April',
-        5: 'May',
-        6: 'June',
-        7: 'July',
-        8: 'August',
-        9: 'September',
-        10: 'October',
-        11: 'November',
-        12: 'December'
-    }
-
-    function formatDate(date) { // 10/22/2021 --> October 22, 2021
-        const dateSplit = date.split('/'); // 10/22/2021 --> [10,22,2021]
-        const month = numToMonth[dateSplit[0]];
-        const day = dateSplit[1];
-        const year = dateSplit[2];
-        return `${month} ${day}, ${year}`;
-    }
-
-    function formatTime(timeInfo) {
-        const timeSplit = timeInfo.split(' '); // [9:04:34, PM]
-        let time = timeSplit[0];
-        time = time.substring(0, time.length - 3); // 9:04:34 --> 9:04
-        const abbreviation = timeSplit[1];
-        return `${time} ${abbreviation}`;
-    }
-
-    function formatUpdatedAt(dateInfo) { // 2021-10-26T23:42:22.335Z --> October 26, 2021 at XX:XX XM
-        if (!dateInfo) return '';
-        try {
-            const dateTime = new Date(dateInfo);
-            const date = formatDate(dateTime.toLocaleDateString());
-            const time = formatTime(dateTime.toLocaleTimeString());
-            return `${date} at ${time}`;
-        } catch(err) {
-            console.error(err);
-        }
-    }
 
     function showNotesList() {
         setIsHiddenList(false);
     }
 
     function editNoteOnDisplay() {
-        setEditing(true);
+        setEditPending(true);
     }
 
     return (
         <div className="notes-display">
             { // Icons on mobile or smaller width windows
-                isHiddenList && !editing &&
+                isHiddenList && !editPending &&
                 <div className="notes-display-header">
                     <div className="show-notes-list-arrow" onClick={showNotesList}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-caret-right" viewBox="0 0 16 16">
@@ -84,15 +42,15 @@ export default function NotesDisplay(props) {
                 </div>
             }
             { // New Note
-                !noteToDisplay && <NoteCreate makeRefresh={makeRefresh} setStatus={setStatus}/>
+                !noteToDisplay && <NoteCreate />
             }
             { // Edit note
-                editing && <NoteEdit note={noteToDisplay} finishEdit={editNote} cancelEdit={cancelEdit} setStatus={setStatus}/>
+                editPending && <NoteEdit />
             }
             { // Display note
-                !editing && noteToDisplay && 
+                !editPending && noteToDisplay && 
                 <Fragment>
-                    <h3 className="note-display-date">{formatUpdatedAt(updatedAt)}</h3>
+                    <h3 className="note-display-date">{noteDisplayFormatUpdatedAt(updatedAt)}</h3>
                     <h2 className="note-display-title">{title}</h2>
                     <div className="note-display-content">
                         <p>{parse(content.replaceAll('\n', '<br/>'))}</p>

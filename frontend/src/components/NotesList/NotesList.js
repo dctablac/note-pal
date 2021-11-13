@@ -1,35 +1,60 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './NotesList.css';
 
 import NotesListItem from '../NotesListItem';
+import { useNotes } from '../../contexts/NotesContext';
 
-export default function NotesList(props) {
-    const { notes, makeActive, activeNote, 
-            handleClick, handleEdit, setDeletePending,
-            editing, isHiddenList
-          } = props;
+export default function NotesList() {
+    const { activeNote, setActiveNote, 
+            editPending, isHiddenList, setIsHiddenList, 
+            setNoteToDisplay, notesList } = useNotes();
+
+    function handleShowCreateNote() {
+        setNoteToDisplay(null);
+        setIsHiddenList(true);
+    }
+
+    function handleMakeActiveNote(e) {
+        const newActiveNotesListIndex = parseInt(e.target.getAttribute("notes-list-index"));
+        setActiveNote(newActiveNotesListIndex);
+        setNoteToDisplay(notesList[newActiveNotesListIndex]);
+        setIsHiddenList(true);
+    }
 
     function renderNoteList() {
         return (
-            notes.map((note, key) => {
+            notesList.map((note, key) => {
                 if (key === activeNote) {
-                    return <NotesListItem key={key} data={note} onClick={makeActive} setDeletePending={setDeletePending} handleEdit={handleEdit} data-id={key} className={"notes-item active-note"}/>
-                } else {
-                    return <NotesListItem key={key} data={note} onClick={makeActive} setDeletePending={setDeletePending} handleEdit={handleEdit} data-id={key} className={"notes-item"}/>
+                    return <NotesListItem 
+                                className={"notes-item active-note"}
+                                note={note} 
+                                key={key} 
+                                handleMakeActiveNote={handleMakeActiveNote} 
+                                notesListIndex={key} 
+                            />
                 }
+                return <NotesListItem 
+                            className={"notes-item"}
+                            note={note}
+                            key={key}
+                            handleMakeActiveNote={handleMakeActiveNote}
+                            notesListIndex={key}
+                        />
             })
         )
     }
 
     return (
-        <Fragment>
-            <div className={isHiddenList ? "hidden-notes-list" : "notes-list"}>
-                {editing && <div className="notes-list-block"></div>}
-                <div className="create-note-item" onClick={handleClick}>
-                    <p>+ New Note</p>
-                </div>
-                {notes && renderNoteList()}
+        <div className={isHiddenList ? "hidden-notes-list" : "notes-list"}>
+
+            {editPending && <div className="notes-list-block"></div>}
+
+            <div className="create-note-item" onClick={handleShowCreateNote}>
+                <p>+ New Note</p>
             </div>
-        </Fragment>
+            
+            {notesList && renderNoteList()}
+
+        </div>
     )
 }

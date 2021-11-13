@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AuthProvider } from '../../contexts/AuthContext';
+import { NotesProvider } from '../../contexts/NotesContext';
 import Content from '../Content';
 import NavBar from '../NavBar';
 
@@ -16,7 +17,9 @@ export default function App() {
     return (
         <AuthProvider>
           <NavBar isNightMode={isNightMode} makeNightMode={makeNightMode}/>
-          <Content isNightMode={isNightMode} />
+          <NotesProvider>
+            <Content isNightMode={isNightMode} />
+          </NotesProvider>
         </AuthProvider>
     );
 }

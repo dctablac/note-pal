@@ -1,0 +1,40 @@
+#note-edit {
+    height: 100%;
+}
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.note-edit-title, .note-edit-content {
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    width: 100%;
+}
+.note-edit-content {
+    height: 100%;
+    resize: none;
+}
+.edit-btn {
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 1rem;
+}
+.edit-save-btn {
+    background-color: gold;
+    color: black;
+    margin-right: 1rem;
+}
+.edit-cancel-btn {
+    background-color: white;
+    border: 1px solid gold;
+    color: gold;
+}
+.edit-cancel-btn:hover {
+    background-color: gold;
+    color: white;
+}
